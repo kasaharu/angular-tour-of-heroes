@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
@@ -11,6 +12,7 @@ describe('HeroesComponent', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
       declarations: [HeroesComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
