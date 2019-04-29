@@ -12,4 +12,18 @@ describe('MessageService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('call add() method', () => {
+    service.messages = [];
+    service.add('test');
+
+    expect(service.messages).toEqual(['test']);
+  });
+
+  it('call clear() method', () => {
+    service.messages = ['test'];
+    service.clear();
+
+    expect(service.messages).toEqual([]);
+  });
 });
