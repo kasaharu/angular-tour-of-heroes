@@ -23,10 +23,4 @@ describe('HeroesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('call onSelect() method', () => {
-    const hero = { id: 1, name: 'test' };
-    component.onSelect(hero);
-    expect(component.selectedHero).toEqual(hero);
-  });
 });
