@@ -52,4 +52,13 @@ describe('HeroService', () => {
     expect(req.request.method).toBe('PUT');
     req.flush(updatingHero);
   });
+
+  it('call addHero() method', () => {
+    const addingHero = { name: 'test' } as Hero;
+
+    service.addHero(addingHero).subscribe((result) => expect(result).toEqual(addingHero));
+    const req = httpTestingController.expectOne(heroesUrl);
+    expect(req.request.method).toBe('POST');
+    req.flush(addingHero);
+  });
 });
