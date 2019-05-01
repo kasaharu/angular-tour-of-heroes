@@ -70,4 +70,21 @@ describe('HeroService', () => {
     expect(req.request.method).toBe('DELETE');
     req.flush(deletingHero);
   });
+
+  describe('call searchHero() method', () => {
+    it('term が空文字列', () => {
+      const term = '';
+      service.searchHero(term).subscribe((result) => expect(result).toEqual([]));
+    });
+
+    it('term が空文字列でない', () => {
+      const term = 'test';
+      const searchingHero: Hero[] = [{ id: 1, name: 'test' }];
+
+      service.searchHero(term).subscribe((result) => expect(result).toEqual(searchingHero));
+      const req = httpTestingController.expectOne(`${heroesUrl}/?name=${term}`);
+      expect(req.request.method).toBe('GET');
+      req.flush(searchingHero);
+    });
+  });
 });
