@@ -5,7 +5,6 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
 import { MessageService } from './message.service';
-import { HEROES } from './mock-heroes';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +21,10 @@ export class HeroService {
   }
 
   getHero(id: number): Observable<Hero> {
-    this.log(`fetched hero id=${id}`);
-    return of(HEROES.find((hero) => hero.id === id));
+    return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
+      tap((_) => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`)),
+    );
   }
 
   private log(message: string) {
