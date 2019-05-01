@@ -61,4 +61,13 @@ describe('HeroService', () => {
     expect(req.request.method).toBe('POST');
     req.flush(addingHero);
   });
+
+  it('call deleteHero() method', () => {
+    const deletingHero: Hero = { id: 1, name: 'test' };
+
+    service.deleteHero(deletingHero).subscribe((result) => expect(result).toEqual(deletingHero));
+    const req = httpTestingController.expectOne(`${heroesUrl}/1`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(deletingHero);
+  });
 });
