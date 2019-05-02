@@ -50,4 +50,13 @@ describe('HeroesComponent', () => {
       expect(component.heroes).toEqual([]);
     });
   });
+
+  it('call delete() method', () => {
+    const heroes = [{ id: 1, name: 'test1' }, { id: 2, name: 'test2' }];
+    component.heroes = heroes;
+
+    component.delete(heroes[0]);
+    console.log(component.heroes);
+    expect(component.heroes).toEqual([{ id: 2, name: 'test2' }]);
+  });
 });
