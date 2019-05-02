@@ -1,3 +1,4 @@
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Hero } from '../../../hero';
 
 export interface State {
@@ -7,3 +8,9 @@ export interface State {
 export const initialState: State = {
   heroes: null,
 };
+
+export const selectFeature = createFeatureSelector<State>('hero');
+export const selectFeatureHeroes = createSelector(
+  selectFeature,
+  (state: State) => state.heroes,
+);
