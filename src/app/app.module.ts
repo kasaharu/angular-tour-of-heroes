@@ -13,6 +13,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { InMemoryDataService } from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
+import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
   declarations: [AppComponent, HeroesComponent, HeroDetailComponent, MessagesComponent, DashboardComponent, HeroSearchComponent],
@@ -23,7 +24,9 @@ import { MessagesComponent } from './messages/messages.component';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    RootStoreModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
