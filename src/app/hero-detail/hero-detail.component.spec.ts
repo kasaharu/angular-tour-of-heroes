@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SpyLocation } from '@angular/common/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +21,7 @@ describe('HeroDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, RouterTestingModule],
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
       declarations: [HeroDetailComponent],
       providers: [{ provide: ActivatedRoute, useValue: activatedRouteStub }, { provide: Location, useValue: location }],
     }).compileComponents();
