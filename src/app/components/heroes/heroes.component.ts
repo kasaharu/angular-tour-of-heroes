@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../../hero';
+import { HeroQuery } from '../../queries/hero.query';
 import { HeroRepository } from '../../repositories/hero.repository';
 import { HeroesUsecase } from '../../usecases/heroes.usecase';
 
@@ -10,16 +11,12 @@ import { HeroesUsecase } from '../../usecases/heroes.usecase';
   styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[];
-  constructor(private heroService: HeroRepository, private heroesUsecase: HeroesUsecase) {}
+  heroes$ = this.heroQuery.heroes$;
+
+  constructor(private heroService: HeroRepository, private heroesUsecase: HeroesUsecase, private heroQuery: HeroQuery) {}
 
   ngOnInit() {
     this.heroesUsecase.initialize();
-    this.getHeroes();
-  }
-
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
   }
 
   add(name: string): void {
