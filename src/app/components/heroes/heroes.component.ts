@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../../hero';
 import { HeroQuery } from '../../queries/hero.query';
-import { HeroRepository } from '../../repositories/hero.repository';
 import { HeroesUsecase } from '../../usecases/heroes.usecase';
 
 @Component({
@@ -13,7 +12,7 @@ import { HeroesUsecase } from '../../usecases/heroes.usecase';
 export class HeroesComponent implements OnInit {
   heroes$ = this.heroQuery.heroes$;
 
-  constructor(private heroService: HeroRepository, private heroesUsecase: HeroesUsecase, private heroQuery: HeroQuery) {}
+  constructor(private heroesUsecase: HeroesUsecase, private heroQuery: HeroQuery) {}
 
   ngOnInit() {
     this.heroesUsecase.initialize();
@@ -24,7 +23,6 @@ export class HeroesComponent implements OnInit {
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter((h) => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
+    this.heroesUsecase.deleteHero(hero);
   }
 }

@@ -26,4 +26,10 @@ export class HeroesUsecase {
     const result = await this.heroRepository.getHeroes().toPromise();
     this.store$.dispatch(HeroStoreActions.fetchHeroes(result));
   }
+
+  async deleteHero(hero: Hero) {
+    this.heroRepository.deleteHero(hero).subscribe();
+    const result = await this.heroRepository.getHeroes().toPromise();
+    this.store$.dispatch(HeroStoreActions.fetchHeroes(result));
+  }
 }
