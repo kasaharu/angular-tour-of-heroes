@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../../hero';
 import { HeroRepository } from '../../repositories/hero.repository';
+import { HeroesUsecase } from '../../usecases/heroes.usecase';
 
 @Component({
   selector: 'app-heroes',
@@ -10,9 +11,10 @@ import { HeroRepository } from '../../repositories/hero.repository';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  constructor(private heroService: HeroRepository) {}
+  constructor(private heroService: HeroRepository, private heroesUsecase: HeroesUsecase) {}
 
   ngOnInit() {
+    this.heroesUsecase.initialize();
     this.getHeroes();
   }
 
