@@ -20,14 +20,7 @@ export class HeroesComponent implements OnInit {
   }
 
   add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-
-    this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-      this.heroes.push(hero);
-    });
+    this.heroesUsecase.addHero(name);
   }
 
   delete(hero: Hero): void {
