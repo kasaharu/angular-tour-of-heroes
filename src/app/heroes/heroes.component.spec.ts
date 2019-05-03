@@ -4,13 +4,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { HeroRepository } from '../repositories/hero.repository';
 import { HeroesComponent } from './heroes.component';
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;
   let fixture: ComponentFixture<HeroesComponent>;
-  let heroService: HeroService;
+  let heroService: HeroRepository;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe('HeroesComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    heroService = TestBed.get(HeroService);
+    heroService = TestBed.get(HeroRepository);
   }));
 
   beforeEach(() => {

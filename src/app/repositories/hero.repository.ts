@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Hero } from './hero';
-import { MessageService } from './message.service';
+import { Hero } from '../hero';
+import { MessageService } from '../message.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HeroService {
+export class HeroRepository {
   private heroesUrl = 'api/heroes';
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -63,7 +63,7 @@ export class HeroService {
   }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`HeroRepository: ${message}`);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { HeroRepository } from '../repositories/hero.repository';
 
 @Component({
   selector: 'app-hero-detail',
@@ -13,7 +13,7 @@ import { HeroService } from '../hero.service';
 export class HeroDetailComponent implements OnInit {
   hero: Hero;
 
-  constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location) {}
+  constructor(private route: ActivatedRoute, private heroService: HeroRepository, private location: Location) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((pmap) => this.getHero(+pmap.get('id')));

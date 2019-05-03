@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { HeroService } from '../hero.service';
+import { HeroRepository } from '../repositories/hero.repository';
 import { ActivatedRouteStub } from '../testing/activated-route-stub';
 import { HeroDetailComponent } from './hero-detail.component';
 
@@ -16,7 +16,7 @@ describe('HeroDetailComponent', () => {
   let fixture: ComponentFixture<HeroDetailComponent>;
   let activatedRouteStub = new ActivatedRouteStub({});
   let location = new SpyLocation();
-  let heroService: HeroService;
+  let heroService: HeroRepository;
   let testHero = { id: 11, name: 'Mr. Nice' };
 
   beforeEach(async(() => {
@@ -26,7 +26,7 @@ describe('HeroDetailComponent', () => {
       providers: [{ provide: ActivatedRoute, useValue: activatedRouteStub }, { provide: Location, useValue: location }],
     }).compileComponents();
 
-    heroService = TestBed.get(HeroService);
+    heroService = TestBed.get(HeroRepository);
   }));
 
   beforeEach(() => {
