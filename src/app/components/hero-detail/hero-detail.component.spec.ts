@@ -7,8 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { HeroRepository } from '../repositories/hero.repository';
-import { ActivatedRouteStub } from '../testing/activated-route-stub';
+import { HeroRepository } from '../../repositories/hero.repository';
+import { ActivatedRouteStub } from '../../testing/activated-route-stub';
 import { HeroDetailComponent } from './hero-detail.component';
 
 describe('HeroDetailComponent', () => {

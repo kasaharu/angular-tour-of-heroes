@@ -3,8 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { Hero } from '../hero';
-import { HeroRepository } from '../repositories/hero.repository';
+import { Hero } from '../../hero';
+import { HeroRepository } from '../../repositories/hero.repository';
 import { HeroesComponent } from './heroes.component';
 
 describe('HeroesComponent', () => {
