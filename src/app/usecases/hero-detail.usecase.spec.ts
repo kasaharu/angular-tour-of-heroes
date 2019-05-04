@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HeroDetailService } from './hero-detail.service';
+import { HeroDetailUsecase } from './hero-detail.usecase';
 
-describe('HeroDetailService', () => {
+describe('HeroDetailUsecase', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: HeroDetailService = TestBed.get(HeroDetailService);
+    const service: HeroDetailUsecase = TestBed.get(HeroDetailUsecase);
     expect(service).toBeTruthy();
   });
 });
