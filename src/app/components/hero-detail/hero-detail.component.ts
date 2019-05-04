@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../../hero';
 import { HeroQuery } from '../../queries/hero.query';
 import { HeroRepository } from '../../repositories/hero.repository';
+import { HeroDetailUsecase } from '../../usecases/hero-detail.usecase';
 
 @Component({
   selector: 'app-hero-detail',
@@ -19,6 +20,7 @@ export class HeroDetailComponent implements OnInit {
     private heroService: HeroRepository,
     private location: Location,
     private heroQuery: HeroQuery,
+    private usecase: HeroDetailUsecase,
   ) {}
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(id: number) {
-    this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));
+    this.usecase.selectHero(id);
   }
 
   goBack(): void {
