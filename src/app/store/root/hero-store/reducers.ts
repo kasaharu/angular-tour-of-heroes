@@ -9,6 +9,12 @@ export function heroReducer(state: State = initialState, action: Actions.Actions
         heroes: action.payload,
       };
     }
+    case Actions.selectHero.type: {
+      return {
+        ...state,
+        selectedHero: action.payload,
+      };
+    }
     default: {
       return state;
     }
