@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Hero } from '../../hero';
-import { HeroRepository } from '../../repositories/hero.repository';
+import { HeroQuery } from '../../queries/hero.query';
+import { DashboardUsecase } from '../../usecases/dashboard.usecase';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +9,11 @@ import { HeroRepository } from '../../repositories/hero.repository';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[];
+  heroes$ = this.heroQuery.topHeroes$;
 
-  constructor(private heroService: HeroRepository) {}
+  constructor(private heroQuery: HeroQuery, private usecase: DashboardUsecase) {}
 
   ngOnInit() {
-    this.getHeroes();
-  }
-
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes.slice(1, 5)));
+    this.usecase.initialize();
   }
 }
