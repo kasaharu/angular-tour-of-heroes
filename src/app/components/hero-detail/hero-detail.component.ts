@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Hero } from '../../hero';
 import { HeroQuery } from '../../queries/hero.query';
-import { HeroRepository } from '../../repositories/hero.repository';
 import { HeroDetailUsecase } from '../../usecases/hero-detail.usecase';
 
 @Component({
@@ -17,7 +16,6 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroRepository,
     private location: Location,
     private heroQuery: HeroQuery,
     private usecase: HeroDetailUsecase,
@@ -36,6 +34,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(hero: Hero): void {
-    this.heroService.updateHero(hero).subscribe(() => this.goBack());
+    this.usecase.updateSelectedHero(hero);
+    this.goBack();
   }
 }
