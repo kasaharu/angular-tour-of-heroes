@@ -15,6 +15,12 @@ export function heroReducer(state: State = initialState, action: Actions.Actions
         selectedHero: action.payload,
       };
     }
+    case Actions.searchHeroes.type: {
+      return {
+        ...state,
+        searchedHeroes: action.payload,
+      };
+    }
     default: {
       return state;
     }
