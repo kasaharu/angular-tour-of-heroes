@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
-import { Hero } from '../../hero';
-import { HeroRepository } from '../../repositories/hero.repository';
+import { HeroQuery } from '../../queries/hero.query';
+import { HeroSearchUsecase } from '../../usecases/hero-search.usecase';
 
 @Component({
   selector: 'app-hero-search',
@@ -11,17 +11,19 @@ import { HeroRepository } from '../../repositories/hero.repository';
   styleUrls: ['./hero-search.component.scss'],
 })
 export class HeroSearchComponent implements OnInit {
-  heroes$: Observable<Hero[]>;
+  heroes$ = this.heroQuery.searchedHeroes$;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: HeroRepository) {}
+  constructor(private heroQuery: HeroQuery, private usecase: HeroSearchUsecase) {}
 
   ngOnInit() {
-    this.heroes$ = this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.heroService.searchHero(term)),
-    );
+    this.searchTerms
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((term: string) => this.usecase.search(term)),
+      )
+      .subscribe();
   }
 
   search(term: string): void {
