@@ -9,6 +9,18 @@ export function heroReducer(state: State = initialState, action: Actions.Actions
         heroes: action.payload,
       };
     }
+    case Actions.selectHero.type: {
+      return {
+        ...state,
+        selectedHero: action.payload,
+      };
+    }
+    case Actions.searchHeroes.type: {
+      return {
+        ...state,
+        searchedHeroes: action.payload,
+      };
+    }
     default: {
       return state;
     }

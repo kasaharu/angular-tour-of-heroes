@@ -1,11 +1,11 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
+import { Hero } from '../hero';
+import { HeroRepository } from './hero.repository';
 
-describe('HeroService', () => {
-  let service: HeroService;
+describe('HeroRepository', () => {
+  let service: HeroRepository;
   let httpTestingController: HttpTestingController;
   const heroesUrl = 'api/heroes';
 
@@ -14,7 +14,7 @@ describe('HeroService', () => {
       imports: [HttpClientTestingModule],
     });
 
-    service = TestBed.get(HeroService);
+    service = TestBed.get(HeroRepository);
     httpTestingController = TestBed.get(HttpTestingController);
   });
 
